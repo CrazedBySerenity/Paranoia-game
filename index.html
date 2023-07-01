@@ -7,21 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Paranoia</title>
 </head>
 <body>
     <div class="page-container">
         <h1 class="main-header">
             Paranoia
         </h1>
-        <div class="questions__container">
+        <div class="questions__container" onClick="buttonClick()">
             <p class="questions__text" id="questions-text">
                 Press the button for the next question
             </p>
+            <div id="countdown-container">
+                <p id="countdown-text">
+                    0
+                </p>
+            </div>
         </div>
-        <button id="continue-btn" onClick="buttonClick()">
+        <!-- <button id="continue-btn" onClick="buttonClick()">
             Click
-        </button>
+        </button> -->
         <div class="rules__container">
             <p class="rules__text">
 
@@ -29,11 +34,7 @@
         </div>
 
     </div>
-    <div id="countdown-container">
-        <p id="countdown-text">
-            0
-        </p>
-    </div>
+
     <script src="index.js"></script>
 </body>
 </html>
