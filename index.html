@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,9 +15,9 @@
         <h1 class="main-header">
             Paranoia
         </h1>
-        <div class="questions__container" onClick="buttonClick()">
+        <div class="questions__container" onClick="buttonClick()" id="questions-container">
             <p class="questions__text" id="questions-text">
-                Press the button for the next question
+                Press for a new question
             </p>
             <div id="countdown-container">
                 <p id="countdown-text">
@@ -27,12 +28,12 @@
 
         <div class="rules-and-button__container">
             <div class="rules__container">
-                <p class="rules__text">
-                    Press the button for a question
-                </p>
+
             </div>
-        <button id="continue-btn" onClick="buttonClick()">
-            Click
+        <button id="rules-btn">
+            <p class="rules__text" id="rules-text">
+                Press the button for a question
+            </p>
         </button>
         </div>
     </div>

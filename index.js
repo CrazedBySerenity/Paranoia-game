@@ -1,6 +1,8 @@
+const questionContainer = document.getElementById("questions-container");
 const questionText = document.getElementById("questions-text");
 const countdownContainer = document.getElementById("countdown-container");
 const countdownText = document.getElementById("countdown-text");
+const rulesText = document.getElementById("rules-text");
 const timerLength = 3;
 
 let questionActive = false;
@@ -9,7 +11,7 @@ let curTimer = timerLength;
 // 1 = Question active
 // 2 = Countdown
 // 3 = Question revealed
-//5  = Out of questions
+// 5  = Out of questions
 let visualState = 0;
 
 let questions = [
@@ -62,7 +64,7 @@ let questions = [
     "Who would you trust to plan a surprise celebrity encounter for you?",
     "Who would you choose to be your teammate in a competitive pie-eating contest?",
     "Who would you choose to be your co-pilot on a magical flying carpet ride?",
-    "Who would you pick to be your teammate in a competitive invisible obstacle course?",
+    "Who would you pick to be your teammate in an impossible obstacle course?",
     "Who would you trust to design and create a fashion line inspired by outer space for you?",
     "Who would you want as your personal unicorn groomer?",
     "Who would you choose to accompany you on a quest to find the lost city of Atlantis?",
@@ -73,18 +75,55 @@ let questions = [
     "Who would you choose to be your co-star in a movie about time-traveling hamsters?",
 ];
 
+updateVisuals();
+
+function updateVisuals() {
+    switch (visualState){
+        case 0:
+            rulesText.textContent = "1. Pick up the phone, don't show the screen to anyone else \n 2. Press the button"
+            break;
+        
+        case 1:
+            rulesText.textContent = "1. Read the question silently to yourself \n 2. Press the button and immediately put the phone face-up on the table"
+            break;
+        
+        case 2:
+            rulesText.textContent = "50/50 chance that the question that was just answered is revealed"
+            countdownContainer.style.visibility = "visible";
+            countdownContainer.classList.add("animate-button"); 
+            questionContainer.classList.add("animate-button-reverse");
+            break;
+        
+        case 3:
+            countdownContainer.style.visibility = "hidden";
+            rulesText.textContent = "1. Give the phone to the next player \n 2. Press the button for a new question"
+            countdownContainer.classList.remove("animate-button");
+            questionContainer.classList.remove("animate-button-reverse");
+            break;
+
+        case 5:
+            break;
+
+    }
+}
+
 function buttonClick () {
     console.log("click");
 
+    if(!(curTimer >= timerLength)){
+        return;
+    }
     switch (questionActive){
         case false:
             visualState = 1;
             questionActive = true;
+            updateVisuals();
             randomQuestion();
             break;
         case true:
-            visualState = 2;
+            updateVisuals();
             questionActive = false;
+            visualState = 2;
             countdown();
             break;
     }
@@ -105,16 +144,16 @@ function randomQuestion() {
 function countdown() {
     if(curTimer >= timerLength){
         countdownText.textContent = curTimer;
-        countdownContainer.style.visibility = "visible";
         curTimer -= 1;
+        updateVisuals();
         setTimeout(countdown, 1000);
     }
-    else if(curTimer <= -1){
+    else if(curTimer <= 0){
         countdownText.textContent = curTimer;
         questionText.textContent = Math.random() > 0.50 ? "The question is kept secret" : "The previous question was: " + questionText.textContent;
-        countdownContainer.style.visibility = "hidden";
         curTimer = timerLength;
         visualState = 3;
+        updateVisuals();
     }
     else{
         countdownText.textContent = curTimer;
