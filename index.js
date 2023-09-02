@@ -5,6 +5,12 @@ const timerLength = 3;
 
 let questionActive = false;
 let curTimer = timerLength;
+// 0 = Start screen
+// 1 = Question active
+// 2 = Countdown
+// 3 = Question revealed
+//5  = Out of questions
+let visualState = 0;
 
 let questions = [
     "Who would you trust to give you a haircut blindfolded?",
@@ -72,10 +78,12 @@ function buttonClick () {
 
     switch (questionActive){
         case false:
+            visualState = 1;
             questionActive = true;
             randomQuestion();
             break;
         case true:
+            visualState = 2;
             questionActive = false;
             countdown();
             break;
@@ -85,6 +93,7 @@ function buttonClick () {
 function randomQuestion() {
     if(questions.length <= 0){
         questionText.textContent = "Out of questions";
+        visualState = 5;
         return;
     }
 
@@ -105,6 +114,7 @@ function countdown() {
         questionText.textContent = Math.random() > 0.50 ? "The question is kept secret" : "The previous question was: " + questionText.textContent;
         countdownContainer.style.visibility = "hidden";
         curTimer = timerLength;
+        visualState = 3;
     }
     else{
         countdownText.textContent = curTimer;

@@ -4,8 +4,10 @@ body {
     align-items: center;
 
     height: 100vh;
+    padding: 0;
+    margin: 0;
 
-    background-color: rgb(18, 18, 18);
+    background-color: rgb(144, 142, 142);
 }
 
 .page-container {
@@ -14,8 +16,11 @@ body {
     align-items: center;
 
     width: 100%;
-    max-width: 300px;
-    height: 100vh;
+    max-width: 375px;
+    height: 600px;
+    background-color: rgb(18, 18, 18);
+
+    border-radius: 15px;
 }
 
 .main-header {
@@ -23,7 +28,7 @@ body {
     text-align: center;
 
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .questions__container {
@@ -39,7 +44,7 @@ body {
     
     margin-bottom: 15px;
 
-    border-radius: 50%;
+    border-radius: 30%;
     border-style: solid;
     border-width: 10px;
     border-color: purple;
@@ -75,7 +80,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    position: fixed;
+    position: absolute;
     visibility: hidden;
 
     width: 100%;
@@ -85,7 +90,7 @@ body {
     max-width: 300px;
     min-width: 150px;
 
-    border-radius: 50%;
+    border-radius: 30%;
     border-style: solid;
     border-width: 10px;
     border-color: purple;
@@ -95,8 +100,24 @@ body {
 
 #countdown-text {
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 120px;
 
     color: white;
+}
+
+.rules__container {
+
+}
+
+.rules__text {
+    color: white;
+    
+    text-align: center;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+
+    margin: 10px;
 }
